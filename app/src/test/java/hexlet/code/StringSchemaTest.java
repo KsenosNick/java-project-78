@@ -9,12 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 class StringSchemaTest {
-    Validator validator;
-    StringSchema schema;
+    private StringSchema schema;
 
     @BeforeEach
     public void setup() {
-        validator = new Validator();
+        Validator validator = new Validator();
         schema = validator.string();
     }
 
