@@ -15,8 +15,8 @@ public class MapSchema<K, V> extends BaseSchema<Map<K, V>> {
         return this;
     }
 
-    public MapSchema<K, V> sizeOf(int size) {
-        String schemaKey = "sizeOf";
+    public MapSchema<K, V> sizeof(int size) {
+        String schemaKey = "sizeof";
 
         Predicate<Map<K, V>> validation = map -> map.size() == size;
         addValidation(schemaKey, validation);

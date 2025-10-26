@@ -35,7 +35,7 @@ public class MapSchemaTest {
 
     @Test
     void testSizeOf() {
-        schema.sizeOf(1);
+        schema.sizeof(1);
 
         assertFalse(schema.isValid(data));
         assertTrue(schema.isValid(null));
@@ -43,7 +43,7 @@ public class MapSchemaTest {
         data.put("key1", "value1");
         assertTrue(schema.isValid(data));
 
-        schema.sizeOf(2);
+        schema.sizeof(2);
         assertFalse(schema.isValid(data));
 
         data.put("key2", "value2");
@@ -52,7 +52,7 @@ public class MapSchemaTest {
 
     @Test
     void testIsValidMultipleCalls() {
-        schema.sizeOf(2).sizeOf(1);
+        schema.sizeof(2).sizeof(1);
 
         data.put("key1", "value1");
         assertTrue(schema.isValid(data));
@@ -61,7 +61,7 @@ public class MapSchemaTest {
         assertFalse(schema.isValid(data));
         assertTrue(schema.isValid(null));
 
-        schema.required().sizeOf(2);
+        schema.required().sizeof(2);
         assertTrue(schema.isValid(data));
         assertFalse(schema.isValid(null));
     }
