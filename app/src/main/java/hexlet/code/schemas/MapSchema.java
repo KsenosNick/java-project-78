@@ -4,39 +4,39 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-public class MapSchema<K, V> extends BaseSchema<Map<K, V>> {
+public class MapSchema extends BaseSchema<Map<?, ?>> {
 
-    public MapSchema<K, V> required() {
+    public MapSchema required() {
         String schemaKey = "required";
 
-        Predicate<Map<K, V>> validation = Objects::nonNull;
+        Predicate<Map<?, ?>> validation = Objects::nonNull;
         addValidation(schemaKey, validation);
 
         return this;
     }
 
-    public MapSchema<K, V> sizeof(int size) {
+    public MapSchema sizeof(int size) {
         String schemaKey = "sizeof";
 
-        Predicate<Map<K, V>> validation = map -> map.size() == size;
+        Predicate<Map<?, ?>> validation = map -> map.size() == size;
         addValidation(schemaKey, validation);
 
         return this;
     }
 
-    public void shape(Map<String, BaseSchema<String>> schemas) {
+    public void shape(Map<?, ? extends BaseSchema<?>> schemas) {
         String schemaKey = "shape";
 
-        Predicate<Map<K, V>> validation = map -> {
+        Predicate<Map<?, ?>> validation = map -> {
             if (map == null) {
                 return true;
             }
 
             return schemas.entrySet().stream()
                     .allMatch(entry -> {
-                        String key = entry.getKey();
-                        BaseSchema<String> schema = entry.getValue();
-                        String value = (String) map.get(key);
+                        Object key = entry.getKey();
+                        BaseSchema<Object> schema = (BaseSchema<Object>) entry.getValue();
+                        Object value = map.get(key);
 
                         return schema.isValid(value);
                     });

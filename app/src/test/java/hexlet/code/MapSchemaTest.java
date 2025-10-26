@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class MapSchemaTest {
     Validator validator;
-    MapSchema<String, String> schema;
+    MapSchema schema;
     Map<String, String> data;
 
     @BeforeEach
@@ -76,7 +76,7 @@ public class MapSchemaTest {
 
         schema.shape(schemas);
 
-        Map<String, String> human1 = new HashMap<>();
+        Map<Object, Object> human1 = new HashMap<>();
         human1.put("firstName", "John");
         human1.put("lastName", "Smith");
         human1.put("phone", null);
