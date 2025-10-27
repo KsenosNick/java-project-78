@@ -3,7 +3,6 @@ plugins {
     id("se.patrikerdes.use-latest-versions") version "0.2.19"
     id("com.github.ben-manes.versions") version "0.52.0"
     id("org.sonarqube") version "6.3.1.5724"
-    application
     jacoco
     checkstyle
 }
@@ -18,10 +17,6 @@ repositories {
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-}
-
-application {
-    mainClass = "hexlet.code.App"
 }
 
 tasks.test {
