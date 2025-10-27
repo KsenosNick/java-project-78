@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 public class MapSchema extends BaseSchema<Map<?, ?>> {
 
-    public MapSchema required() {
+    public final MapSchema required() {
         String schemaKey = "required";
 
         Predicate<Map<?, ?>> validation = Objects::nonNull;
@@ -15,7 +15,7 @@ public class MapSchema extends BaseSchema<Map<?, ?>> {
         return this;
     }
 
-    public MapSchema sizeof(int size) {
+    public final MapSchema sizeof(int size) {
         String schemaKey = "sizeof";
 
         Predicate<Map<?, ?>> validation = map -> map.size() == size;
@@ -24,7 +24,7 @@ public class MapSchema extends BaseSchema<Map<?, ?>> {
         return this;
     }
 
-    public void shape(Map<?, ? extends BaseSchema<?>> schemas) {
+    public final void shape(Map<?, ? extends BaseSchema<?>> schemas) {
         String schemaKey = "shape";
 
         Predicate<Map<?, ?>> validation = map -> {
